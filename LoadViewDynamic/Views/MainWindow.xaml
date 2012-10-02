@@ -1,0 +1,26 @@
+﻿<Window x:Class="LoadViewDynamic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:LoadViewDynamic"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:OptionalView}">
+            <Border Background="Red" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:SettingsView}">
+            <Border Background="Green" />
+            <!--<local:SettingsView />-->
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ContentControl Content="{Binding CurrentView}" />
+        <Button Grid.Row="1"
+            Command="{Binding SwitchViewCommand}"
+            Content="SwitchView" />
+    </Grid>
+</Window>
